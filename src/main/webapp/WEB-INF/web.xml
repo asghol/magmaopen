@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="false">
+
+    <servlet>
+        <servlet-name>gameServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.GameServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>gameServlet</servlet-name>
+        <url-pattern>/game/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>playerServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.PlayerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>playerServlet</servlet-name>
+        <url-pattern>/player/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>categoriesServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.CategoriesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>categoriesServlet</servlet-name>
+        <url-pattern>/categories/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ruleUpdateServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.RuleUpdateServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ruleUpdateServlet</servlet-name>
+        <url-pattern>/admin/update/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>statusServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.StatusServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>statusServlet</servlet-name>
+        <url-pattern>/status/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logReaderServlet</servlet-name>
+        <servlet-class>no.anderska.wta.servlet.LogReaderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logReaderServlet</servlet-name>
+        <url-pattern>/admin/logreader/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <!-- Override init parameter to avoid nasty -->
+        <!-- file locking issue on windows.         -->
+        <!--suppress ServletWithoutMappingInspection -->
+        <servlet-name>default</servlet-name>
+        <init-param>
+            <param-name>useFileMappedBuffer</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </servlet>
+
+    <filter>
+        <filter-name>adminFilter</filter-name>
+        <filter-class>no.anderska.wta.servlet.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>adminFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
