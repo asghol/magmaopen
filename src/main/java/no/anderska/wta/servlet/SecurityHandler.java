@@ -3,7 +3,7 @@ package no.anderska.wta.servlet;
 import javax.servlet.http.HttpSession;
 
 class SecurityHandler {
-    private static final String PASSWORD="secret";
+    private static final String PASSWORD="asgeirsofijamo";
     public SecurityHandler() {
     }
 

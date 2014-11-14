@@ -15,7 +15,7 @@ public class SecurityHandlerTest {
 
     @Test
     public void shouldLogon() throws Exception {
-        boolean result = securityHandler.login("secret", session);
+        boolean result = securityHandler.login("asgeirsofijamo", session);
 
         assertThat(result).isTrue();
 
