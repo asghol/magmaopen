@@ -1,0 +1,117 @@
+package no.anderska.wta.questions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import no.anderska.wta.game.Question;
+
+public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
+
+    private static final String DESCRIPTION = "Finn ut om Sofija, Asgeir og Jonathan får spise lunsj sammen.";
+
+    private LunsjQuestionGenerator(int numberOfQuestions) {
+        super(numberOfQuestions, DESCRIPTION);
+    }
+
+    public LunsjQuestionGenerator() {
+        this(1);
+    }
+
+    protected void createAnswer(String question){
+
+    }
+
+    @Override
+    protected final Question createQuestion() {
+        StringBuilder testCase = new StringBuilder("Sofija_11:15-12:00;Asgeir_10:00-11:00_12:15-13:00;Jonathan_11:30-11:35_12:10-12:17");
+        return new Question(testCase.toString(), calculateResult(testCase.toString()));
+    }
+
+    private String calculateResult(String inputString){
+        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<ArrayList<Pair>> timeStrings = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            String line = inputString.split(";")[i];
+            names.add(line.split("_")[0]);
+            //save DateTimes
+            ArrayList<Pair> availableTimes = new ArrayList<>();
+            if (line.split("_").length > 1) {
+                Double start = timeToDouble("10:55");
+                for (int j = 0; j < Arrays.copyOfRange(line.split("_"), 1, line.split("_").length).length; j++) {
+                    String str = Arrays.copyOfRange(line.split("_"), 1, line.split("_").length)[j];
+                    // "10:30-11:40
+                    String meetingStartString = str.split("-")[0];
+                    String meetingEndString = str.split("-")[1];
+                    if (start < timeToDouble(meetingStartString)) {
+                        Pair newPair = new Pair(start, timeToDouble(meetingStartString));
+                        if (newPair.b - newPair.a >= 0.5) {
+                            availableTimes.add(newPair);
+                        }
+                    }
+                    start = java.lang.Math.max(start, timeToDouble(meetingEndString));
+                    if (j == Arrays.copyOfRange(line.split("_"), 1, line.split("_").length).length - 1 && start < timeToDouble("13:00")) {
+                        Pair newPair = new Pair(start, timeToDouble("13:00"));
+                        if (newPair.b - newPair.a >= 0.5) {
+                            availableTimes.add(newPair);
+                        }
+                    }
+                }
+            } else {
+                availableTimes.add(new Pair(timeToDouble("10:55"), timeToDouble("13:00")));
+            }
+            timeStrings.add(availableTimes);
+        }
+        int res = haveOverlap(timeStrings);
+        if (res == 1) {
+            return "Ingen spiser med noen";
+        } else if (res == 2) {
+            return ("2 spiser sammen");
+        } else if (res == 3) {
+            return ("Hurra");
+        }
+        return "null";
+    }
+
+
+
+    static double timeToDouble(String timeString){
+        Double res = Integer.parseInt(timeString.split(":")[0])*1.0;
+        res += Integer.parseInt(timeString.split(":")[1])/(60.0);
+        return res;
+    }
+
+    static int haveOverlap(ArrayList<ArrayList<Pair>> liste){
+        int res = 1;
+        for (Pair sofija: liste.get(0)) {
+            for (Pair asgeir: liste.get(1)){
+                for (Pair jonathan: liste.get(2)){
+                    if (2 > res && (sofija.hasOverlapWith(asgeir) || asgeir.hasOverlapWith(jonathan) || sofija.hasOverlapWith(jonathan))) {
+                        res = 2;
+                    }
+                    if (3 > res && sofija.hasOverlapWith(asgeir) && asgeir.hasOverlapWith(jonathan) && sofija.hasOverlapWith(jonathan)) {
+                        res = 3;
+                        return res;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    class Pair{
+        Double a;
+        Double b;
+        Pair(Double a2, Double b2){
+            a=a2;
+            b=b2;
+        }
+        boolean hasOverlapWith(Pair pair){
+            Double newA = java.lang.Math.max(a, pair.a);
+            Double newB = java.lang.Math.min(b, pair.b);
+            if (newB - newA >= 0.5) {
+                return true;
+            }
+            return false;
+        }
+    }
+}

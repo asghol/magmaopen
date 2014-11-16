@@ -44,33 +44,36 @@ public class QuestionGeneratorFactory {
     public static QuestionGeneratorFactory withAllQuestions() {
         QuestionGeneratorFactory questionFactory = new QuestionGeneratorFactory();
 
+        questionFactory.put("Lunsj", LunsjQuestionGenerator.class, 50);
+        questionFactory.put("Taxituren", TaxiturenQuestionGenerator.class, 50);
+
         questionFactory.put("Echo", EchoQuestionGenerator.class, 2);
-        questionFactory.put("Length", WordCountQuestionGenerator.class, 5);
-        questionFactory.put("First", FirstCharacterQuestionGenerator.class, 5);
-        questionFactory.put("Last", LastCharacterQuestionGenerator.class, 5);
-        questionFactory.put("Reverse", ReverseStringQuestionGenerator.class, 10);
-        questionFactory.put("HtmlEscape", HtmlEscapeQuestionGenerator.class, 20);
-        questionFactory.put("Sort", SortQuestionGenerator.class, 15);
-        questionFactory.put("NumberSort", SortNumericQuestionGenerator.class, 25);
-        questionFactory.put("RomanSort", SortRomanQuestionGenerator.class, 50);
-        questionFactory.put("Addition", AdditionQuestionGenerator.class, 10);
-        questionFactory.put("MaxOccurence", MaxLetterOccurenceQuestionGenerator.class, 15);
-        questionFactory.put("Fibonacci", FibonacciQuestionGenerator.class, 20);
-        questionFactory.put("Minesweeper", MinesweeperQuestionGenerator.class, 50);
-        questionFactory.put("PrimeFactor", PrimeFactorQuestionGenerator.class, 50);
-        questionFactory.put("ToRoman", ToRomanQuestionGenerator.class, 40);
-        questionFactory.put("ToSmallRoman", ToRomanQuestionGenerator.Small.class, 15);
-        questionFactory.put("FromRoman", FromRomanNumberQuestionGenerator.class, 40);
-        questionFactory.put("FromSmallRoman", FromRomanNumberQuestionGenerator.Small.class, 15);
-        questionFactory.put("Computation", ComputationQuestionGenerator.class, 25);
-        questionFactory.put("Equation", EquationQuestionGenerator.class, 45);
-        questionFactory.put("TimeCalc", TimeCalculationGenerator.class, 30);
-        questionFactory.put("Sudoku", FixedSudokoGenerator.class, 65);
-        questionFactory.put("TrivialNumbers", NumberAsTextQuestionGenerator.TrivialNumbers.class, 10);
-        questionFactory.put("SmallNumbers", NumberAsTextQuestionGenerator.SmallNumbers.class, 20);
-        questionFactory.put("NormalNumbers", NumberAsTextQuestionGenerator.NormalNumbers.class, 30);
-        questionFactory.put("LargeNumbers", NumberAsTextQuestionGenerator.LargeNumbers.class, 40);
-        questionFactory.put("TravellingSalesman", TravellingSalesmanQuestionGenerator.class, 100);
+//        questionFactory.put("Length", WordCountQuestionGenerator.class, 5);
+//        questionFactory.put("First", FirstCharacterQuestionGenerator.class, 5);
+//        questionFactory.put("Last", LastCharacterQuestionGenerator.class, 5);
+//        questionFactory.put("Reverse", ReverseStringQuestionGenerator.class, 10);
+//        questionFactory.put("HtmlEscape", HtmlEscapeQuestionGenerator.class, 20);
+//        questionFactory.put("Sort", SortQuestionGenerator.class, 15);
+//        questionFactory.put("NumberSort", SortNumericQuestionGenerator.class, 25);
+//        questionFactory.put("RomanSort", SortRomanQuestionGenerator.class, 50);
+//        questionFactory.put("Addition", AdditionQuestionGenerator.class, 10);
+//        questionFactory.put("MaxOccurence", MaxLetterOccurenceQuestionGenerator.class, 15);
+//        questionFactory.put("Fibonacci", FibonacciQuestionGenerator.class, 20);
+//        questionFactory.put("Minesweeper", MinesweeperQuestionGenerator.class, 50);
+//        questionFactory.put("PrimeFactor", PrimeFactorQuestionGenerator.class, 50);
+//        questionFactory.put("ToRoman", ToRomanQuestionGenerator.class, 40);
+//        questionFactory.put("ToSmallRoman", ToRomanQuestionGenerator.Small.class, 15);
+//        questionFactory.put("FromRoman", FromRomanNumberQuestionGenerator.class, 40);
+//        questionFactory.put("FromSmallRoman", FromRomanNumberQuestionGenerator.Small.class, 15);
+//        questionFactory.put("Computation", ComputationQuestionGenerator.class, 25);
+//        questionFactory.put("Equation", EquationQuestionGenerator.class, 45);
+//        questionFactory.put("TimeCalc", TimeCalculationGenerator.class, 30);
+//        questionFactory.put("Sudoku", FixedSudokoGenerator.class, 65);
+//        questionFactory.put("TrivialNumbers", NumberAsTextQuestionGenerator.TrivialNumbers.class, 10);
+//        questionFactory.put("SmallNumbers", NumberAsTextQuestionGenerator.SmallNumbers.class, 20);
+//        questionFactory.put("NormalNumbers", NumberAsTextQuestionGenerator.NormalNumbers.class, 30);
+//        questionFactory.put("LargeNumbers", NumberAsTextQuestionGenerator.LargeNumbers.class, 40);
+//        questionFactory.put("TravellingSalesman", TravellingSalesmanQuestionGenerator.class, 100);
 
 
         return questionFactory;
