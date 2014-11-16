@@ -23,7 +23,7 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
 
     @Override
     protected final Question createQuestion() {
-        StringBuilder testCase = new StringBuilder("Sofija_11:15-12:00;Asgeir_10:00-11:00_12:15-13:00;Jonathan_11:30-11:35_12:10-12:17");
+        StringBuilder testCase = new StringBuilder("Sofija 11:15-12:00;Asgeir 10:00-11:00 12:15-13:00;Jonathan 11:30-11:35 12:10-12:17");
         return new Question(testCase.toString(), calculateResult(testCase.toString()));
     }
 
@@ -33,13 +33,13 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
 
         for (int i = 0; i < 3; i++) {
             String line = inputString.split(";")[i];
-            names.add(line.split("_")[0]);
+            names.add(line.split(" ")[0]);
             //save DateTimes
             ArrayList<Pair> availableTimes = new ArrayList<>();
-            if (line.split("_").length > 1) {
+            if (line.split(" ").length > 1) {
                 Double start = timeToDouble("10:55");
-                for (int j = 0; j < Arrays.copyOfRange(line.split("_"), 1, line.split("_").length).length; j++) {
-                    String str = Arrays.copyOfRange(line.split("_"), 1, line.split("_").length)[j];
+                for (int j = 0; j < Arrays.copyOfRange(line.split(" "), 1, line.split(" ").length).length; j++) {
+                    String str = Arrays.copyOfRange(line.split(" "), 1, line.split(" ").length)[j];
                     // "10:30-11:40
                     String meetingStartString = str.split("-")[0];
                     String meetingEndString = str.split("-")[1];
@@ -50,7 +50,7 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
                         }
                     }
                     start = java.lang.Math.max(start, timeToDouble(meetingEndString));
-                    if (j == Arrays.copyOfRange(line.split("_"), 1, line.split("_").length).length - 1 && start < timeToDouble("13:00")) {
+                    if (j == Arrays.copyOfRange(line.split(" "), 1, line.split(" ").length).length - 1 && start < timeToDouble("13:00")) {
                         Pair newPair = new Pair(start, timeToDouble("13:00"));
                         if (newPair.b - newPair.a >= 0.5) {
                             availableTimes.add(newPair);
