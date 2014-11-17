@@ -1,7 +1,6 @@
 package no.anderska.wta.questions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import no.anderska.wta.game.Question;
