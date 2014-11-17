@@ -62,7 +62,7 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
             }
             timeStrings.add(availableTimes);
         }
-        int res = haveOverlap(timeStrings);
+        int res = haveIntersection(timeStrings);
         if (res == 1) {
             return "Ingen spiser med noen";
         } else if (res == 2) {
@@ -81,15 +81,15 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
         return res;
     }
 
-    static int haveOverlap(ArrayList<ArrayList<Pair>> liste){
+    static int haveIntersection(ArrayList<ArrayList<Pair>> liste){
         int res = 1;
         for (Pair sofija: liste.get(0)) {
             for (Pair asgeir: liste.get(1)){
                 for (Pair jonathan: liste.get(2)){
-                    if (2 > res && (sofija.hasOverlapWith(asgeir) || asgeir.hasOverlapWith(jonathan) || sofija.hasOverlapWith(jonathan))) {
+                    if (2 > res && (sofija.hasIntersectionWith(asgeir) || asgeir.hasIntersectionWith(jonathan) || sofija.hasIntersectionWith(jonathan))) {
                         res = 2;
                     }
-                    if (3 > res && sofija.hasOverlapWith(asgeir) && asgeir.hasOverlapWith(jonathan) && sofija.hasOverlapWith(jonathan)) {
+                    if (3 > res && sofija.hasIntersectionWith(asgeir) && asgeir.hasIntersectionWith(jonathan) && sofija.hasIntersectionWith(jonathan)) {
                         res = 3;
                         return res;
                     }
@@ -105,7 +105,7 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
             a=a2;
             b=b2;
         }
-        boolean hasOverlapWith(Pair pair){
+        boolean hasIntersectionWith(Pair pair){
             Double newA = java.lang.Math.max(a, pair.a);
             Double newB = java.lang.Math.min(b, pair.b);
             if (newB - newA >= 0.5) {
