@@ -46,6 +46,7 @@ public class QuestionGeneratorFactory {
 
         questionFactory.put("Lunsj", LunsjQuestionGenerator.class, 50);
         questionFactory.put("Taxituren", TaxiturenQuestionGenerator.class, 50);
+        questionFactory.put("Fotballkampbilletter", FotballkampbilletterQuestionGenerator.class, 50);
 
         questionFactory.put("Echo", EchoQuestionGenerator.class, 2);
 //        questionFactory.put("Length", WordCountQuestionGenerator.class, 5);
