@@ -15,7 +15,7 @@ public class FotballkampbilletterQuestionGenerator extends FotballkampbilletterA
     }
 
     public FotballkampbilletterQuestionGenerator() {
-        this(5);
+        this(4);
     }
 
     protected void createAnswer(String question){
@@ -30,7 +30,9 @@ public class FotballkampbilletterQuestionGenerator extends FotballkampbilletterA
         testCases.add("-**--**:3"); //false
         testCases.add("-**--** **---**:7"); //false
         testCases.add("-**--**:1"); //false
+        testCases.add("-**- --*:1"); //false
 
+        testCases.add("-**- --*:2"); //true
         testCases.add("--**-- -**--- ---**-:6"); //true
         testCases.add("-***- -**-- --*--:5"); //true
         testCases.add("*-*-*---- --******- -***-----:9"); //true
