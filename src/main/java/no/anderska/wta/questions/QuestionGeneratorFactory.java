@@ -50,7 +50,7 @@ public class QuestionGeneratorFactory {
         questionFactory.put("Taxituren", TaxiturenQuestionGenerator.class, 50); //Tests?
         questionFactory.put("Tapasrettferdighet", TapasrettferdighetQuestionGenerator.class, 30); //OK
         questionFactory.put("Turutgifter", TurutgifterQuestionGenerator.class, 50); //OK Tests?
-        questionFactory.put("Melding", MeldingQuestionGenerator.class, 30); //Test????
+        questionFactory.put("Melding", MeldingQuestionGenerator.class, 30); //OK
         questionFactory.put("Bishops", LoepereQuestionGenerator.class, 40); //OK
 
 

@@ -24,14 +24,55 @@ public class MeldingQuestionGenerator extends MeldingAbstractQuestionGenerator{
 
     @Override
     protected final Question createQuestion() {
-        ArrayList<String> testCases = new ArrayList<String>();
-        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghodk ewkfhew sjna jfktghel");
-        testCases.add("sjna ewkfhew jfksghel kaghadk:sjna kaghodk ewkfhew jfktghel");
+        ArrayList<String> dic = new ArrayList<String>();
+        int numberOfWordsInDic = new Random().nextInt(6);
+        numberOfWordsInDic += 1;
+        for (int i =0; i<numberOfWordsInDic; i++){
+            int lengthOfWord = new Random().nextInt(5);
+            lengthOfWord += 1;
+            String dicWord = randomString(lengthOfWord);
+            dic.add(dicWord);
+        }
+        String dicString ="";
+        for (String word : dic){
+            dicString = dicString + word + " ";
+        }
+        dicString = dicString.substring(0,dicString.length()-1);
 
-        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghdk ewkfhew sjna jfktghel");
-        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghdk ewkfggw sjna jfktghel");
+        ArrayList<String> messageList = new ArrayList<>();
+        int numberOfWordsInMessage = new Random().nextInt(numberOfWordsInDic);
+        numberOfWordsInMessage += 2;
+        for (int i =0; i<numberOfWordsInMessage; i++){
+            int wordIndexInDic = new Random().nextInt(numberOfWordsInDic);
+            messageList.add(dic.get(wordIndexInDic));
+        }
 
-        String testCase = testCases.get(new Random().nextInt(testCases.size()));
+        String result = "";
+        for (String word: messageList){
+            result = result + word + " ";
+        }
+        result = result.substring(0,result.length()-1);
+
+        int numberOfMistakes = new Random().nextInt(6);
+        for (int i = 0; i<numberOfMistakes; i++){
+            int numberOfPositionToBeMistaken = new Random().nextInt(result.length());
+            if (result.charAt(numberOfPositionToBeMistaken)==' '){
+                numberOfPositionToBeMistaken --;
+            }
+            char c = (char) ('a' + random.nextInt(26));
+            result = result.substring(0,numberOfPositionToBeMistaken)+c+result.substring(numberOfPositionToBeMistaken+1);
+        }
+
+        String testCase =dicString + ":" + result;
+
+//        ArrayList<String> testCases = new ArrayList<String>();
+//        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghodk ewkfhew sjna jfktghel");
+//        testCases.add("sjna ewkfhew jfksghel kaghadk:sjna kaghodk ewkfhew jfktghel");
+//
+//        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghdk ewkfhew sjna jfktghel");
+//        testCases.add("sjna ewkfhew jfksghel kaghadk:kaghdk ewkfggw sjna jfktghel");
+//
+//        String testCase = testCases.get(new Random().nextInt(testCases.size()));
 
         return new Question(testCase.toString(), calculateResult(testCase.toString()));
 
