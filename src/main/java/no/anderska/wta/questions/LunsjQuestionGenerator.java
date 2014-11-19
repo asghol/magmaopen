@@ -2,6 +2,7 @@ package no.anderska.wta.questions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import no.anderska.wta.game.Question;
 
@@ -14,7 +15,7 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
     }
 
     public LunsjQuestionGenerator() {
-        this(1);
+        this(3);
     }
 
     protected void createAnswer(String question){
@@ -23,7 +24,16 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
 
     @Override
     protected final Question createQuestion() {
-        StringBuilder testCase = new StringBuilder("Sofija 11:15-12:00;Asgeir 10:00-11:00 12:15-13:00;Jonathan 11:30-11:35 12:10-12:17");
+
+        //Sofija 11:15-12:00;Asgeir;Jonathan 11:30-11:35 12:10-12:17
+
+        ArrayList<String> testCases = new ArrayList<String>();
+        testCases.add("Sofija 11:15-12:00;Asgeir 10:00-11:00 12:15-13:00;Jonathan 11:30-11:35 12:10-12:17"); //2 spiser sammen
+        testCases.add("Sofija 11:15-12:00;Asgeir;Jonathan 11:30-11:35 12:10-12:17"); //Hurra
+
+
+        String testCase = testCases.get(new Random().nextInt(testCases.size()));
+
         return new Question(testCase.toString(), calculateResult(testCase.toString()));
     }
 
@@ -33,7 +43,11 @@ public class LunsjQuestionGenerator extends LunsjAbstractQuestionGenerator {
 
         for (int i = 0; i < 3; i++) {
             String line = inputString.split(";")[i];
-            names.add(line.split(" ")[0]);
+            if (line.contains(" ")){
+                names.add(line.split(" ")[0]);
+            } else {
+                names.add(line);
+            }
             //save DateTimes
             ArrayList<Pair> availableTimes = new ArrayList<>();
             if (line.split(" ").length > 1) {

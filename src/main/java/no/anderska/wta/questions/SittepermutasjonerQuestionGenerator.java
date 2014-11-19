@@ -24,17 +24,12 @@ public class SittepermutasjonerQuestionGenerator extends SittepermutasjonerAbstr
     @Override
     protected final Question createQuestion() {
         ArrayList<String> testCases = new ArrayList<String>();
-        testCases.add("4 2");
-        testCases.add("10 4");
-        testCases.add("7 2");
-        testCases.add("37 12"); //TODO: create more of this, so that it would fail with long values
-        testCases.add("17 6");
-        testCases.add("17 3");
+        int first = new Random().nextInt(9);
+        first += 2;
+        int second = new Random().nextInt(first-2);
+        second +=2;
 
-
-
-
-        String testCase = testCases.get(new Random().nextInt(testCases.size()));
+        String testCase = "" + first + " " + second;
 
         return new Question(testCase.toString(), calculateResult(testCase.toString()));
     }

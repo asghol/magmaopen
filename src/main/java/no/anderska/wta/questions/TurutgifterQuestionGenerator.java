@@ -25,7 +25,7 @@ public class TurutgifterQuestionGenerator extends TurutgifterAbstractQuestionGen
         ArrayList<String> testCases = new ArrayList<String>();
         testCases.add("10.00 20.00 30.00"); //10.00
         testCases.add("15.00 15.01 3.00 3.01"); //11.99
-        testCases.add("18.50 13.03 16.9"); //$2.84
+        testCases.add("18.50 13.03 16.90");
         testCases.add("7.04 3.09 5.89"); //$2.25
         testCases.add("6.99 18.20 45.37 81.50"); //$50.83
         testCases.add("4.55 7.80 8.99"); //$2.56
@@ -35,6 +35,15 @@ public class TurutgifterQuestionGenerator extends TurutgifterAbstractQuestionGen
         testCases.add("6.77 8.00 8.00 5.20"); //$2.01
         testCases.add("4.50 6.80"); //$1.15
         testCases.add("3.67 7.70"); //$2.01
+        testCases.add("3.10 3.10 3.00 3.10");
+        testCases.add("6.99 18.70 45.27 81.50");
+        testCases.add("3.10 3.18 3.00 3.90");
+        testCases.add("3.16 39.10 3.00 3.10");
+        testCases.add("4.55 6.80");
+
+
+
+
 
 
         String testCase = testCases.get(new Random().nextInt(testCases.size()));
@@ -72,6 +81,6 @@ public class TurutgifterQuestionGenerator extends TurutgifterAbstractQuestionGen
                 given += ((int) deltaCents) / 100.0;
             }
         }
-        return String.format("$%.2f", taken > given ? taken : given);
+        return String.format("%.2f", taken > given ? taken : given);
     }
 }

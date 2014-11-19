@@ -22,7 +22,7 @@ public class TaxiturenQuestionGenerator extends TaxiturenAbstractQuestionGenerat
     }
 
     public TaxiturenQuestionGenerator() {
-        this(3);
+        this(4);
     }
 
     protected void createAnswer(String question){

@@ -44,11 +44,16 @@ public class QuestionGeneratorFactory {
     public static QuestionGeneratorFactory withAllQuestions() {
         QuestionGeneratorFactory questionFactory = new QuestionGeneratorFactory();
 
-        questionFactory.put("Lunsj", LunsjQuestionGenerator.class, 50);
-        questionFactory.put("Taxituren", TaxiturenQuestionGenerator.class, 50);
-        questionFactory.put("Fotballkampbilletter", FotballkampbilletterQuestionGenerator.class, 50);
-        questionFactory.put("Turutgifter", TurutgifterQuestionGenerator.class, 50);
-        questionFactory.put("Sittepermutasjoner", SittepermutasjonerQuestionGenerator.class, 50);
+        questionFactory.put("Lunsj", LunsjQuestionGenerator.class, 40); //Tests????
+        questionFactory.put("Fotballkampbilletter", FotballkampbilletterQuestionGenerator.class, 50); //OK
+        questionFactory.put("Sittepermutasjoner", SittepermutasjonerQuestionGenerator.class, 40); //OK
+        questionFactory.put("Taxituren", TaxiturenQuestionGenerator.class, 50); //Tests?
+        questionFactory.put("Tapasrettferdighet", TapasrettferdighetQuestionGenerator.class, 30); //OK
+        questionFactory.put("Turutgifter", TurutgifterQuestionGenerator.class, 50); //OK Tests?
+        questionFactory.put("Melding", MeldingQuestionGenerator.class, 30); //Test????
+        questionFactory.put("Bishops", LoepereQuestionGenerator.class, 40); //OK
+
+
 
         questionFactory.put("Echo", EchoQuestionGenerator.class, 2);
 //        questionFactory.put("Length", WordCountQuestionGenerator.class, 5);
